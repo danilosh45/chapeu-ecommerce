@@ -1,0 +1,20 @@
+{
+  "name": "chapeu",
+  "version": "1.0.0",
+  "description": "Chapeau Wines Ecommnerce website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "prettier": "prettier -write .",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "Danilo Altamirano<danilosh45@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-next": "^12.1.5",
+    "prettier": "^2.6.2"
+  }
+}
