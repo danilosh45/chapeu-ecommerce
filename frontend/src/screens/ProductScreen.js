@@ -1,8 +1,8 @@
+import axios from 'axios';
 import { useParams } from "react-router-dom";
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useEffect, useReducer } from 'react';
-import axios from 'axios';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,6 +20,7 @@ const reducer = (state, action) => {
 function ProductScreen() {
   const params = useParams();
   const { slug } = params;
+
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
     loading: true,
@@ -35,9 +36,8 @@ function ProductScreen() {
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-      // setProducts(result.data);
     };
-    fetchData()
+    fetchData();
   }, [slug]);
 
   return loading ? (
@@ -62,4 +62,4 @@ function ProductScreen() {
     </div>
   );
 }
-export default ProductScreen
+export default ProductScreen;

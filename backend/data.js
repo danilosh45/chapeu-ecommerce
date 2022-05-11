@@ -3,7 +3,7 @@ const data = {
   products: [
     {
       name: 'Wine 2640',
-      slug: 'Vino-500-ml',
+      slug: 'wine-26540',
       category: 'Red Wine',
       image: '/images/p1.jpg',
       price: 120,
@@ -15,7 +15,7 @@ const data = {
     },
     {
       name: 'Wine ilurce',
-      slug: 'Vino-500-mls',
+      slug: 'wine-ilurce',
       category: 'Rose Wine',
       image: '/images/p2.jpg',
       price: 101,
@@ -27,7 +27,7 @@ const data = {
     },
     {
       name: 'Wine Petit',
-      slug: 'Vino-200-ml',
+      slug: 'wine-petit',
       category: 'Red Wine',
       image: '/images/p3.jpg',
       price: 120,
@@ -39,7 +39,7 @@ const data = {
     },
     {
       name: 'Wine mondeu',
-      slug: 'Vino-100-ml',
+      slug: 'wine-mondeu',
       category: 'Red Wine',
       image: '/images/p4.jpg',
       price: 120,

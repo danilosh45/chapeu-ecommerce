@@ -38,9 +38,8 @@ function HomeScreen() {
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-      // setProducts(result.data);
     };
-    fetchData()
+    fetchData();
   }, []);
 
   return (
