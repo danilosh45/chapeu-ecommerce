@@ -5,7 +5,7 @@ const data = {
       name: 'Wine 2640',
       slug: 'wine-26540',
       category: 'Red Wine',
-      image: '/images/p1.jpg',
+      image: '/images/wine1.jpg',
       price: 120,
       countInStock: 10,
       brand: 'chapeuwine',
