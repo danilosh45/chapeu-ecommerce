@@ -19,7 +19,7 @@ const data = {
       category: 'Rose Wine',
       image: '/images/p2.jpg',
       price: 101,
-      countInStock: 10,
+      countInStock: 0,
       brand: 'chapeuwine',
       rating: 4.4,
       numReviews: 10,
