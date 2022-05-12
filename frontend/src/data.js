@@ -2,6 +2,7 @@ const data = {
 
   products: [
     {
+      _id: '1',
       name: 'Wine 2640',
       slug: 'Vino-500-ml',
       category: 'Red Wine',
@@ -14,18 +15,20 @@ const data = {
       description: 'high quality Wine',
     },
     {
+      _id: '2',
       name: 'Wine ilurce',
       slug: 'Vino-500-mls',
       category: 'Rose Wine',
       image: '/images/p2.jpg',
       price: 101,
-      countInStock: 10,
+      countInStock: 0,
       brand: 'chapeuwine',
       rating: 4.4,
       numReviews: 10,
       description: 'high quality Wine',
     },
     {
+      _id: '3',
       name: 'Wine Petit',
       slug: 'Vino-200-ml',
       category: 'Red Wine',
@@ -38,6 +41,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
+      _id: '4',
       name: 'Wine mondeu',
       slug: 'Vino-100-ml',
       category: 'Red Wine',

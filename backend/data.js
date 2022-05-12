@@ -2,6 +2,7 @@ const data = {
 
   products: [
     {
+      _id: '1',
       name: 'Wine 2640',
       slug: 'wine-26540',
       category: 'Red Wine',
@@ -14,6 +15,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
+      _id: '2',
       name: 'Wine ilurce',
       slug: 'wine-ilurce',
       category: 'Rose Wine',
@@ -26,6 +28,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
+      _id: '3',
       name: 'Wine Petit',
       slug: 'wine-petit',
       category: 'Red Wine',
@@ -38,6 +41,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
+      _id: '4',
       name: 'Wine mondeu',
       slug: 'wine-mondeu',
       category: 'Red Wine',

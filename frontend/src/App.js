@@ -25,10 +25,10 @@ function App() {
               </LinkContainer>
               <Nav className="me-auto">
                 <Link to="/cart" className="nav-link">
-                  cart
+                  Cart
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg="danger">
-                      {cart.Items.length}
+                      {cart.Items.reduce((a, c) => a + c.quantity, 0)}
                     </Badge>
                   )}
                 </Link>
