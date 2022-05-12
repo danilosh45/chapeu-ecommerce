@@ -11,7 +11,7 @@ const data = {
       countInStock: 10,
       brand: 'chapeuwine',
       rating: 4.3,
-      numReviews: 10,
+      numReviews: 5,
       description: 'high quality Wine',
     },
     {
@@ -47,7 +47,7 @@ const data = {
       category: 'Red Wine',
       image: '/images/p4.jpg',
       price: 120,
-      countInStock: 10,
+      countInStock: 20,
       brand: 'chapeuwine',
       rating: 4.3,
       numReviews: 10,

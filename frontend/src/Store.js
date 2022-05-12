@@ -13,11 +13,11 @@ function reducer(state, action) {
     case 'CART_ADD_ITEM':
       // add to carrito 
       const newItem = action.payload;
-      const existItem = state.cart.cartItem.find(
+      const existItem = state.cart.cartItems.find(
         (item) => item._id === newItem._id
       );
       const cartItems = existItem
-        ? state.cart.cartItem.map((item) =>
+        ? state.cart.cartItems.map((item) =>
           item._id === existItem._id ? newItem : item
         )
         : [...state.cart.cartItems, newItem];
