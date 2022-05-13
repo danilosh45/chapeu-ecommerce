@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React from 'react';
 import { Row, Col, ListGroup, Card, Badge, Button } from 'react-bootstrap';
 import { useContext, useEffect, useReducer } from 'react';
@@ -25,6 +25,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
@@ -61,6 +62,7 @@ function ProductScreen() {
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
     });
+    navigate('/cart');
   };
 
   return loading ? (
