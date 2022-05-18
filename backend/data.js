@@ -1,8 +1,25 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Danilo',
+      email: 'danilosh45@gmail.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+    },
+    {
+      name: 'Dan',
+      email: 'danilosh45@gmail.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+
+  ],
 
   products: [
     {
-      _id: '1',
+      //_id: '1',
       name: 'Wine 2640',
       slug: 'wine-26540',
       category: 'Red Wine',
@@ -15,7 +32,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
-      _id: '2',
+      //_id: '2',
       name: 'Wine ilurce',
       slug: 'wine-ilurce',
       category: 'Rose Wine',
@@ -28,7 +45,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
-      _id: '3',
+      // _id: '3',
       name: 'Wine Petit',
       slug: 'wine-petit',
       category: 'Red Wine',
@@ -41,7 +58,7 @@ const data = {
       description: 'high quality Wine',
     },
     {
-      _id: '4',
+      // _id: '4',
       name: 'Wine mondeu',
       slug: 'wine-mondeu',
       category: 'Red Wine',

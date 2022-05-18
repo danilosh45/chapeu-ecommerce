@@ -13,9 +13,9 @@ import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
 
-function App() {
-  const { state } = useContext(Store);
-  const { cart } = state;
+    function App() {
+ const { state } = useContext(Store);
+ const { cart } = state;
   return (
     <BrowserRouter>
       <div>

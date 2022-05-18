@@ -7,15 +7,21 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "prettier": "prettier -write .",
-    "lint": "next lint"
+    "lint": "next lint",
+    "flow": "flow"
+
   },
   "keywords": [],
   "author": "Danilo Altamirano<danilosh45@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.12",
+    "@babel/preset-flow": "^7.17.12",
     "eslint": "^8.14.0",
     "eslint-config-next": "^12.1.5",
     "express": "^4.18.1",
+    "flow-bin": "^0.178.0",
     "prettier": "^2.6.2"
   }
 }
