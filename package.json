@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "next build",
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
     "prettier": "prettier -write .",
     "flow": "flow"
   },
