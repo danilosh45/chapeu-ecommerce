@@ -1,10 +1,9 @@
-import express, { query } from 'express';
+import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
 import { isAuth, isAdmin } from '../utils.js';
 
 const productRouter = express.Router();
-
 
 productRouter.get('/', async (req, res) => {
   const products = await Product.find();
@@ -17,7 +16,7 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
-      name: 'sample name' + Date.now(),
+      name: 'sample name ' + Date.now(),
       slug: 'sample-name-' + Date.now(),
       image: '/images/p1.jpg',
       price: 0,
@@ -29,7 +28,7 @@ productRouter.post(
       description: 'sample description',
     });
     const product = await newProduct.save();
-    res.send({ message: 'product Created', product });
+    res.send({ message: 'Product Created', product });
   })
 );
 
@@ -57,6 +56,21 @@ productRouter.put(
   })
 );
 
+productRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      await product.remove();
+      res.send({ message: 'Product Deleted' });
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
+
 const PAGE_SIZE = 3;
 
 productRouter.get(
@@ -75,7 +89,8 @@ productRouter.get(
     res.send({
       products,
       countProducts,
-      page: Math.ceil(countProducts / pageSize),
+      page,
+      pages: Math.ceil(countProducts / pageSize),
     });
   })
 );
@@ -174,7 +189,6 @@ productRouter.get('/slug/:slug', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
-
 productRouter.get('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {

@@ -1,6 +1,4 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeScreen from './screens/HomeScreen';
@@ -11,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
@@ -40,7 +38,7 @@ function App() {
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
-    localStorage.removeItem('ShippingAddress');
+    localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
   };
@@ -67,8 +65,8 @@ function App() {
             : 'd-flex flex-column site-container'
         }
       >
-        <ToastContainer position="botton-center" limit={1} />
-        <header >
+        <ToastContainer position="bottom-center" limit={1} />
+        <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Button
@@ -77,13 +75,14 @@ function App() {
               >
                 <i className="fas fa-bars"></i>
               </Button>
+
               <LinkContainer to="/">
-                <Navbar.Brand>Chapeau</Navbar.Brand>
+                <Navbar.Brand>Chapeau Wines</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
-                <Nav className="me-auto w-100 justify-content-end">
+                <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && (
@@ -97,7 +96,7 @@ function App() {
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="orderhistory">
+                      <LinkContainer to="/orderhistory">
                         <NavDropdown.Item>Order History</NavDropdown.Item>
                       </LinkContainer>
                       <NavDropdown.Divider />
@@ -183,7 +182,6 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
-
               <Route
                 path="/orderhistory"
                 element={
@@ -197,7 +195,7 @@ function App() {
                 element={<ShippingAddressScreen />}
               ></Route>
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-              { /* Admin Routes */}
+              {/* Admin Routes */}
               <Route
                 path="/admin/dashboard"
                 element={
@@ -222,6 +220,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
