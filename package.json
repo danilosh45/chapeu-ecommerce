@@ -9,6 +9,9 @@
     "start": "node backend/server.js",
     "prettier": "prettier -write .",
     "flow": "flow"
+    "engines":{
+    "node": "18.0.0"
+  }
   },
   "keywords": [],
   "author": "Danilo Altamirano<danilosh45@gmail.com",
