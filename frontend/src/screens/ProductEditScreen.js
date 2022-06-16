@@ -59,9 +59,12 @@ export default function ProductEditScreen() {
   const [image, setImage] = useState('');
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState('');
-  const [producerName, setproducerName] = useState('');
+  const [producerName, setProducerName] = useState('');
   const [brand, setBrand] = useState('');
   const [description, setDescription] = useState('');
+  const [label, setLabel] = useState('');
+  const [alcoholPorcentage, setAlcoholPorcentage] = useState('');
+  const [yearProduced, setYearProduced] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,9 +77,12 @@ export default function ProductEditScreen() {
         setImage(data.image);
         setCategory(data.category);
         setCountInStock(data.countInStock);
-        setproducerName(data.producerName);
+        setProducerName(data.producerName);
         setBrand(data.brand);
         setDescription(data.description);
+        setLabel(data.label);
+        setAlcoholPorcentage(data.alcoholPorcentage);
+        setYearProduced(data.yearProduced);
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         dispatch({
@@ -105,6 +111,9 @@ export default function ProductEditScreen() {
           countInStock,
           producerName,
           description,
+          label,
+          alcoholPorcentage,
+          yearProduced,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -170,7 +179,7 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="name">
+          <Form.Group className="mb-3" controlId="price">
             <Form.Label>Price</Form.Label>
             <Form.Control
               value={price}
@@ -220,10 +229,36 @@ export default function ProductEditScreen() {
             <Form.Label>Producer Name</Form.Label>
             <Form.Control
               value={producerName}
-              onChange={(e) => setproducerName(e.target.value)}
+              onChange={(e) => setProducerName(e.target.value)}
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="label">
+            <Form.Label>Label</Form.Label>
+            <Form.Control
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="alcoholPorcentage">
+            <Form.Label>Porcentaje de Alcohol</Form.Label>
+            <Form.Control
+              value={alcoholPorcentage}
+              onChange={(e) => setAlcoholPorcentage(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="yearProduced">
+            <Form.Label>Año de Produccion</Form.Label>
+            <Form.Control
+              value={yearProduced}
+              onChange={(e) => setYearProduced(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control

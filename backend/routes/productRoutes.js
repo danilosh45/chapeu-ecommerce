@@ -27,6 +27,9 @@ productRouter.post(
       rating: 0,
       numReviews: 0,
       description: 'sample description',
+      label: 'sample label',
+      alcoholPorcentage: '0',
+      yearProduced: '0',
     });
     const product = await newProduct.save();
     res.send({ message: 'Product Created', product });
@@ -50,6 +53,9 @@ productRouter.put(
       product.countInStock = req.body.countInStock;
       product.producerName = req.body.producerName;
       product.description = req.body.description;
+      product.label = req.body.label;
+      product.alcoholPorcentage = req.body.alcoholPorcentage;
+      product.yearProduced = req.body.yearProduced;
       await product.save();
       res.send({ message: 'Product Updated' });
     } else {

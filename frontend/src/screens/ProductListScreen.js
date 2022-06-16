@@ -168,6 +168,7 @@ export default function ProductListScreen() {
                 <th>CATEGORY</th>
                 <th>BRAND</th>
                 <th>ACTIONS</th>
+                <th>Produced</th>
               </tr>
             </thead>
             <tbody>
@@ -178,6 +179,7 @@ export default function ProductListScreen() {
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
+                  <td>{product.yearProduced}</td>
                   <td>
                     <Button
                       type="button"
