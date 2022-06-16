@@ -5,13 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "build": "cd backend && npm install --force && cd ../frontend && npm install --force && npm run build",
     "start": "node backend/server.js",
     "prettier": "prettier -write .",
     "flow": "flow"
-    "engines":{
-    "node": "18.0.0"
-  }
   },
   "keywords": [],
   "author": "Danilo Altamirano<danilosh45@gmail.com",
