@@ -30,6 +30,7 @@ productRouter.post(
       label: 'sample label',
       alcoholPorcentage: '0',
       yearProduced: '0',
+      barrica: '0',
     });
     const product = await newProduct.save();
     res.send({ message: 'Product Created', product });
@@ -56,6 +57,7 @@ productRouter.put(
       product.label = req.body.label;
       product.alcoholPorcentage = req.body.alcoholPorcentage;
       product.yearProduced = req.body.yearProduced;
+      product.barrica = req.body.barrica;
       await product.save();
       res.send({ message: 'Product Updated' });
     } else {

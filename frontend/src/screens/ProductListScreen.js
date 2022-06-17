@@ -167,8 +167,8 @@ export default function ProductListScreen() {
                 <th>PRICE</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
+                <th>PRODUCED</th>
                 <th>ACTIONS</th>
-                <th>Produced</th>
               </tr>
             </thead>
             <tbody>

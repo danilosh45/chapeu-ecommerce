@@ -26,6 +26,7 @@ const productSchema = new mongoose.Schema(
     label: { type: String, required: true },
     alcoholPorcentage: { type: Number, required: true },
     yearProduced: { type: Number, required: true },
+    barrica: { type: String, required: true },
     numReviews: { type: Number, required: true },
     reviews: [reviewSchema],
   },

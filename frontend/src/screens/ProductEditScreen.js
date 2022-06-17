@@ -65,6 +65,7 @@ export default function ProductEditScreen() {
   const [label, setLabel] = useState('');
   const [alcoholPorcentage, setAlcoholPorcentage] = useState('');
   const [yearProduced, setYearProduced] = useState('');
+  const [barrica, setBarrica] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,6 +84,7 @@ export default function ProductEditScreen() {
         setLabel(data.label);
         setAlcoholPorcentage(data.alcoholPorcentage);
         setYearProduced(data.yearProduced);
+        setBarrica(data.barrica);
         dispatch({ type: 'FETCH_SUCCESS' });
       } catch (err) {
         dispatch({
@@ -114,6 +116,7 @@ export default function ProductEditScreen() {
           label,
           alcoholPorcentage,
           yearProduced,
+          barrica,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -257,8 +260,14 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
-
-
+          <Form.Group className="mb-3" controlId="barrica">
+            <Form.Label>Barrica</Form.Label>
+            <Form.Control
+              value={barrica}
+              onChange={(e) => setBarrica(e.target.value)}
+              required
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control
