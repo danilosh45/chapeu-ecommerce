@@ -14,7 +14,7 @@ Website for purchasing and distributing wines from La Rioja to the whole world
 
 ## Info or additional stuff
 
-maybe sooner
+maybe sooner!
 
 
 ## Tech Stack
