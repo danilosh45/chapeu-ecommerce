@@ -34,6 +34,7 @@ import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
+import NavBarLogo from './components/navbar';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -73,11 +74,12 @@ function App() {
               : 'site-container d-flex flex-column'
         }
       >
+        <NavBarLogo />
         <ToastContainer position="bottom-center" limit={1} />
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="light" variant="light" expand="lg">
           <Container>
             <Button
-              variant="dark"
+              variant="light"
               onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
             >
               <i className="fas fa-bars"></i>
@@ -264,7 +266,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className="text-center">All rights reserved</div>
+          <div className="text-center"> Chapeu wines All rights reserved</div>
         </footer>
       </div>
     </BrowserRouter>

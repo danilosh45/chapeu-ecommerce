@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
 import React from 'react';
-import { Row, Col, ListGroup, Card, Badge, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup, Card, Badge, Button, Form, Container, ListGroupItem } from 'react-bootstrap';
 import { useContext, useEffect, useReducer } from 'react';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
@@ -12,144 +12,170 @@ import { Store } from '../Store';
 
 
 const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true };
-    case 'FETCH_SUCCES':
-      return { ...state, product: action.payload, loading: false };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case 'FETCH_REQUEST':
+			return { ...state, loading: true };
+		case 'FETCH_SUCCES':
+			return { ...state, product: action.payload, loading: false };
+		case 'FETCH_FAIL':
+			return { ...state, loading: false, error: action.payload };
+		default:
+			return state;
+	}
 };
 
 function ProductScreen() {
-  const navigate = useNavigate();
-  const params = useParams();
-  const { slug } = params;
+	const navigate = useNavigate();
+	const params = useParams();
+	const { slug } = params;
 
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
-    product: [],
-    loading: true,
-    error: '',
-  });
+	const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+		product: [],
+		loading: true,
+		error: '',
+	});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: 'FETCH_REQUEST' });
-      try {
-        const result = await axios.get(`/api/products/slug/${slug}`);
-        dispatch({ type: 'FETCH_SUCCES', payload: result.data });
-      } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
-      }
-    };
-    fetchData();
-  }, [slug]);
+	useEffect(() => {
+		const fetchData = async () => {
+			dispatch({ type: 'FETCH_REQUEST' });
+			try {
+				const result = await axios.get(`/api/products/slug/${slug}`);
+				dispatch({ type: 'FETCH_SUCCES', payload: result.data });
+			} catch (err) {
+				dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+			}
+		};
+		fetchData();
+	}, [slug]);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
-  const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
-    }
-    ctxDispatch({
-      type: 'CART_ADD_ITEM',
-      payload: { ...product, quantity },
-    });
-    navigate('/cart');
-  };
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { cart } = state;
+	const addToCartHandler = async () => {
+		const existItem = cart.cartItems.find((x) => x._id === product._id);
+		const quantity = existItem ? existItem.quantity + 1 : 1;
+		const { data } = await axios.get(`/api/products/${product._id}`);
+		if (data.countInStock < quantity) {
+			window.alert('Sorry. Product is out of stock');
+			return;
+		}
+		ctxDispatch({
+			type: 'CART_ADD_ITEM',
+			payload: { ...product, quantity },
+		});
+		navigate('/cart');
+	};
 
-  return loading ? (
-    <LoadingBox />
-  ) : error ? (
-    <MessageBox variant="danger">{error}</MessageBox>
-  ) : (
-    <div>
-      <Row>
-        <Col md={6}>
-          <img
-            className="img-large"
-            src={product.image}
-            alt={product.name}
-          ></img>
-        </Col>
-        <Col md={3}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <Helmet>
-                <title>{product.name}</title>
-              </Helmet>
-              <h1> {product.name}</h1>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating
-                rating={product.rating}
-                numReviews={product.numReviews}>
-              </Rating>
-            </ListGroup.Item>
-            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
-            <ListGroup.Item>
-              Description:
-              <p>{product.description}</p>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={3}>
-          <Card>
-            <Card.Body>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Price:</Col>
-                    <Col> ${product.price}</Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Row>
-                    <Col> Status: </Col>
-                    <Col>
-                      {product.countInStock > 0 ? (
-                        <Badge bg="success">In Stock</Badge>
-                      ) : (
-                        <Badge bg="danger"> Sin Stock</Badge>
-                      )}
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                {product.countInStock > 0 && (
-                  <ListGroup.Item>
-                    <div className="d-grid">
-                      <Button onClick={addToCartHandler} variant="primary">
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
-                )}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <ListGroup>
-        <ListGroup.Item>
-          Añada:
-          <Col>{product.yearProduced}</Col>
-          Porcentaje de alcohol:
-          <Col>{product.alcoholPorcentage}</Col>
-          Productor:
-          <Col>{product.producerName}</Col>
-          Barrica:
-          <Col>{product.barrica}</Col>
+	return loading ? (
+		<LoadingBox />
+	) : error ? (
+		<MessageBox variant="danger">{error}</MessageBox>
+	) : (
+		<div>
+			<Row>
+				<Col md={6}>
+					<img
+						className="img-large"
+						src={product.image}
+						alt={product.name}
+					></img>
+				</Col>
+				<Col md={3}>
+					<ListGroup variant="flush">
+						<ListGroup.Item>
+							<Helmet>
+								<title>{product.name}</title>
+							</Helmet>
+							<h1> {product.name}</h1>
+						</ListGroup.Item>
+						<ListGroup.Item>
+							<Rating
+								rating={product.rating}
+								numReviews={product.numReviews}>
+							</Rating>
+						</ListGroup.Item>
+						<ListGroup.Item>Price : ${product.price}</ListGroup.Item>
+						<ListGroup.Item>
+							Description:
+							<p>{product.description}</p>
+						</ListGroup.Item>
+					</ListGroup>
+				</Col>
+				<Col md={3}>
+					<Card>
+						<Card.Body>
+							<ListGroup variant="flush">
+								<ListGroup.Item>
+									<Row>
+										<Col>Price:</Col>
+										<Col> ${product.price}</Col>
 
-        </ListGroup.Item>
-      </ListGroup>
-    </div>
-  );
+										<Form.Group as={Col} controlId="formGridState">
+											<Form.Label>State</Form.Label>
+											<Form.Select defaultValue="Choose...">
+												<option>Caja 6 botellas 75cl</option>
+												<option>Caja de 12 botellas 75cl</option>
+											</Form.Select>
+										</Form.Group>
+
+									</Row>
+								</ListGroup.Item>
+								<ListGroup.Item>
+									<Row>
+										<Col> Status: </Col>
+										<Col>
+											{product.countInStock > 0 ? (
+												<Badge bg="success">In Stock</Badge>
+											) : (
+												<Badge bg="danger"> Sin Stock</Badge>
+											)}
+										</Col>
+									</Row>
+								</ListGroup.Item>
+								{product.countInStock > 0 && (
+									<ListGroup.Item>
+										<div className="d-grid">
+											<Button onClick={addToCartHandler} variant="primary">
+												Add to Cart
+											</Button>
+										</div>
+									</ListGroup.Item>
+								)}
+							</ListGroup>
+						</Card.Body>
+					</Card>
+				</Col>
+			</Row>
+			<Container>
+				<Row className="justify-content-md-left">
+					<ListGroup.Item>
+						Añada:
+						<Col md={4}>{product.yearProduced}</Col>
+						Porcentaje de alcohol:
+						<Col>{product.alcoholPorcentage}</Col>
+						Productor:
+						<Col>{product.producerName}</Col>
+						Barrica:
+						<Col>{product.barrica}</Col>
+					</ListGroup.Item>
+				</Row>
+			</Container>
+			<Container>
+				<Row xs={2} md={4} lg={6}>
+					<Col>1 of 2</Col>
+					<Col>2 of 2</Col>
+				</Row>
+				<Row xs={1} md={2}>
+					<Col>1 of 3</Col>
+					<Col>2 of 3</Col>
+					<Col>3 of 3</Col>
+				</Row>
+				<Row xs="auto">
+					<Col>1 of 3</Col>
+					<Col>2 of 3</Col>
+					<Col>3 of 3</Col>
+				</Row>
+			</Container>
+		</div>
+	);
 }
 export default ProductScreen;
